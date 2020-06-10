@@ -1,4 +1,15 @@
-import { Component, h } from "@stencil/core";
+import { Component, State, h } from "@stencil/core";
+
+const themes = {
+  main: {
+    "--main-color": "#5851ff",
+    "--bg-color": "#f1f8fe",
+  },
+  secondary: {
+    "--main-color": "pink",
+    "--bg-color": "yellow",
+  },
+};
 
 @Component({
   tag: "app-root",
@@ -6,6 +17,8 @@ import { Component, h } from "@stencil/core";
   shadow: true,
 })
 export class AppRoot {
+  @State() changedTheme: boolean = false;
+
   render() {
     return (
       <main>
@@ -15,7 +28,26 @@ export class AppRoot {
             <stencil-route url="/profile/:name" component="app-profile" />
           </stencil-route-switch>
         </stencil-router>
-        <footer></footer>
+        <footer>
+          <button
+            onClick={() => {
+              this.changedTheme = !this.changedTheme;
+              const themeToSet = this.changedTheme
+                ? themes.secondary
+                : themes.main;
+              document.documentElement.style.setProperty(
+                "--main-color",
+                themeToSet["--main-color"]
+              );
+              document.documentElement.style.setProperty(
+                "--bg-color",
+                themeToSet["--bg-color"]
+              );
+            }}
+          >
+            Toggle theme
+          </button>
+        </footer>
       </main>
     );
   }

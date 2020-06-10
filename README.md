@@ -1,4 +1,4 @@
-#Stencil+D3 example app - COVID tracker
+# Stencil+D3 example app - COVID tracker
 
 View app demo [HERE](http://stencil-d3-dashboard.surge.sh)
 
