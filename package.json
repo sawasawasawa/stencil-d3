@@ -5,6 +5,7 @@
   "description": "Stencil App Starter",
   "scripts": {
     "build": "stencil build",
+    "deploy": "npm run build && surge ./www stencil-d3-dashboard.surge.sh",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
@@ -17,10 +18,11 @@
     "@types/puppeteer": "2.0.1",
     "jest": "24.9.0",
     "jest-cli": "24.9.0",
+    "jest-fetch-mock": "^3.0.3",
     "puppeteer": "2.1.1"
   },
   "license": "MIT",
   "dependencies": {
-    "cypress": "^4.8.0"
+    "d3": "^5.16.0"
   }
 }

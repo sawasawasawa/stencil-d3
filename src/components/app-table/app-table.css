@@ -1,0 +1,26 @@
+tr {
+  cursor: pointer;
+  padding: 15px 0;
+}
+
+tr:hover {
+  background-color: var(--bg-color)
+}
+
+table {
+  text-align: left;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  text-transform: uppercase;
+  background-color: var(--bg-color);
+  color: var(--main-color)
+}
+
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid var(--bg-color);
+}

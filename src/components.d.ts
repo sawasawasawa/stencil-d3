@@ -5,21 +5,33 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { MatchResults, } from "@stencil/router";
 export namespace Components {
     interface AppDashboard {
         "countriesShowedCount": number;
-        "match": MatchResults;
-        "selected"?: string;
+        "dataUrl": string;
     }
     interface AppHome {
     }
-    interface AppProfile {
-        "match": MatchResults;
-    }
     interface AppRoot {
     }
+    interface AppTable {
+        "countriesShowedCount": number;
+        "data": string;
+        "labels": string;
+        "onRowClick": (DataRow) => void;
+        "selectedElement"?: {
+            Country: string;
+            TotalConfirmed: number;
+            TotalDeaths: number;
+            TotalRecovered: number;
+        };
+    }
     interface PieChart {
+        "data": string;
+        "height"?: number;
+        "label": string;
+        "radius"?: number;
+        "width"?: number;
     }
 }
 declare global {
@@ -35,17 +47,17 @@ declare global {
         prototype: HTMLAppHomeElement;
         new (): HTMLAppHomeElement;
     };
-    interface HTMLAppProfileElement extends Components.AppProfile, HTMLStencilElement {
-    }
-    var HTMLAppProfileElement: {
-        prototype: HTMLAppProfileElement;
-        new (): HTMLAppProfileElement;
-    };
     interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {
     }
     var HTMLAppRootElement: {
         prototype: HTMLAppRootElement;
         new (): HTMLAppRootElement;
+    };
+    interface HTMLAppTableElement extends Components.AppTable, HTMLStencilElement {
+    }
+    var HTMLAppTableElement: {
+        prototype: HTMLAppTableElement;
+        new (): HTMLAppTableElement;
     };
     interface HTMLPieChartElement extends Components.PieChart, HTMLStencilElement {
     }
@@ -56,31 +68,44 @@ declare global {
     interface HTMLElementTagNameMap {
         "app-dashboard": HTMLAppDashboardElement;
         "app-home": HTMLAppHomeElement;
-        "app-profile": HTMLAppProfileElement;
         "app-root": HTMLAppRootElement;
+        "app-table": HTMLAppTableElement;
         "pie-chart": HTMLPieChartElement;
     }
 }
 declare namespace LocalJSX {
     interface AppDashboard {
         "countriesShowedCount"?: number;
-        "match"?: MatchResults;
-        "selected"?: string;
+        "dataUrl"?: string;
     }
     interface AppHome {
     }
-    interface AppProfile {
-        "match"?: MatchResults;
-    }
     interface AppRoot {
     }
+    interface AppTable {
+        "countriesShowedCount"?: number;
+        "data"?: string;
+        "labels"?: string;
+        "onRowClick"?: (DataRow) => void;
+        "selectedElement"?: {
+            Country: string;
+            TotalConfirmed: number;
+            TotalDeaths: number;
+            TotalRecovered: number;
+        };
+    }
     interface PieChart {
+        "data"?: string;
+        "height"?: number;
+        "label"?: string;
+        "radius"?: number;
+        "width"?: number;
     }
     interface IntrinsicElements {
         "app-dashboard": AppDashboard;
         "app-home": AppHome;
-        "app-profile": AppProfile;
         "app-root": AppRoot;
+        "app-table": AppTable;
         "pie-chart": PieChart;
     }
 }
@@ -90,8 +115,8 @@ declare module "@stencil/core" {
         interface IntrinsicElements {
             "app-dashboard": LocalJSX.AppDashboard & JSXBase.HTMLAttributes<HTMLAppDashboardElement>;
             "app-home": LocalJSX.AppHome & JSXBase.HTMLAttributes<HTMLAppHomeElement>;
-            "app-profile": LocalJSX.AppProfile & JSXBase.HTMLAttributes<HTMLAppProfileElement>;
             "app-root": LocalJSX.AppRoot & JSXBase.HTMLAttributes<HTMLAppRootElement>;
+            "app-table": LocalJSX.AppTable & JSXBase.HTMLAttributes<HTMLAppTableElement>;
             "pie-chart": LocalJSX.PieChart & JSXBase.HTMLAttributes<HTMLPieChartElement>;
         }
     }
